@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/fontawesome.min.js" integrity="sha512-64O4TSvYybbO2u06YzKDmZfLj/Tcr9+oorWhxzE3yDnmBRf7wvDgQweCzUf5pm2xYTgHMMyk5tW8kWU92JENng==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #000000, #1f1f1f); /* Background animation */
+            background-size: 200% 200%; /* Larger size for animation */
+            animation: gradientAnimation 10s ease infinite;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .center {
+            height: 500px;
+            width: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .center button {
+            font-size: 50px; /* Increased font size */
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 20px 40px; /* Increased padding */
+            margin: 10px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+            width: 250px; /* Set a fixed width */
+        }
+
+        .center button:hover {
+            background-color: #555;
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .center button i {
+            margin-left: 10px;
+        }
+
+        /* Remove link styles */
+        .center button a {
+            text-decoration: none;
+            color: inherit; /* Inherit text color from parent */
+        }
+    </style>
+</head>
+<body>
+    <div class="center">
+        <button><a href="index.html">Normal <i class="fas fa-calculator" aria-hidden="true"></i></a></button>
+        <button><a href="scientificcalculator.html">Scientific <i class="fas fa-calculator"></i></a></button>
+    </div>
+</body>
+</html>

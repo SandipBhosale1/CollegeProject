@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Calculator</title>
+    <style>
+        /* Calculator Styles */
+        .calculator {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #f0f0f0;
+            border: 1px solid #d3d3d3;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Display Styles */
+        #output {
+            background-color: #fff;
+            border: 1px solid #d3d3d3;
+            border-radius: 30px;
+            margin-bottom: 30px;
+            padding: 50px;
+            padding-right: 90px;
+            font-size: 24px;
+            text-align: right;
+            width: calc(100% - 20px);
+            box-sizing: border-box;
+            height: 50px;
+        }
+
+        /* Keyboard Box Styles */
+        .keyboard-box {
+            background-color: #f0f0f0;
+            border: 1px solid #d3d3d3;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Button Styles */
+        .button {
+            width: 70px;
+            height: 70px;
+            font-size: 20px;
+            background-color: #e0e0e0;
+            border: 1px solid #d3d3d3;
+            border-radius: 40px; /* Rounded corners */
+            margin: 5px;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease, color 0.2s ease; /* Added transitions for animation */
+        }
+
+        .button:hover {
+            background-color: #c0c0c0;
+            transform: scale(1.05);
+        }
+
+        .button.clear, .button.equals {
+            background-color: orange; /* Change the color of "C" and "=" buttons to orange */
+            color: white; /* Change the text color to white */
+        }
+
+        .button.clear:hover, .button.equals:hover {
+            background-color: #ff8000; /* Darker orange on hover */
+        }
+
+        /* Button Grid */
+        .button-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* Additional Features */
+        .button.keyboard {
+            font-size: 14px;
+        }
+
+        /* Header Styles */
+        .header {
+            font-size: 32px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="calculator">
+        <div class="header">Scientific Calculator</div>
+        <div class="display">
+            <input id="output" type="text" name="">
+        </div>
+        <table class="button-table">
+            <tr>
+                <td>
+                    <div class="button clear">C</div>
+                </td>
+                <td>
+                    <div class="button keyboard">DEL</div>
+                </td>
+                <td>
+                    <div class="button keyboard">Tab</div>
+                </td>
+                <td>
+                    <div class="button">n!</div>
+                </td>
+                <td>
+                    <div class="button">(</div>
+                </td>
+                <td>
+                    <div class="button">)</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="button">^</div>
+                </td>
+                <td>
+                    <div class="button">sq</div>
+                </td>
+                <td>
+                    <div class="button keyboard" data-key="π">π</div>
+                </td>
+                <td>
+                    <div class="button">exp</div>
+                </td>
+                <td>
+                    <div class="button">ln</div>
+                </td>
+                <td>
+                    <div class="button">log</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="button">sin</div>
+                </td>
+                <td>
+                    <div class="button">cos</div>
+                </td>
+                <td>
+                    <div class="button">7</div>
+                </td>
+                <td>
+                    <div class="button">8</div>
+                </td>
+                <td>
+                    <div class="button">9</div>
+                </td>
+                <td>
+                    <div class="button">/</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="button">tan</div>
+                </td>
+                <td>
+                    <div class="button">sqrt</div>
+                </td>
+                <td>
+                    <div class="button">4</div>
+                </td>
+                <td>
+                    <div class="button">5</div>
+                </td>
+                <td>
+                    <div class="button">6</div>
+                </td>
+                <td>
+                    <div class="button">*</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="button">%</div>
+                </td>
+                <td>
+                    <div class="button">e</div>
+                </td>
+                <td>
+                    <div class="button">1</div>
+                </td>
+                <td>
+                    <div class="button">2</div>
+                </td>
+                <td>
+                    <div class="button">3</div>
+                </td>
+                <td>
+                    <div class="button">-</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="button">radians</div>
+                </td>
+                <td>
+                    <div class="button">degrees</div>
+                </td>
+                <td>
+                    <div class="button">0</div>
+                </td>
+                <td>
+                    <div class="button keyboard">.</div>
+                </td>
+                <td>
+                    <div class="button">+</div>
+                </td>
+                <td>
+                    <div class="button equals">=</div>
+                </td>
+                
+            </tr>
+        </table>
+    </div>
+</body>
+
+<script>
+    // Function to update the display
+    function updateDisplay(value) {
+        document.getElementById("output").value += value;
+    }
+
+    // Function to clear the display
+    function clearDisplay() {
+        document.getElementById("output").value = "";
+    }
+
+    // Function to calculate the result
+    function calculateResult() {
+        try {
+            const expression = document.getElementById("output").value;
+            const result = eval(expression);
+            document.getElementById("output").value = result;
+        } catch (error) {
+            // Handle any calculation errors
+            document.getElementById("output").value = "Error";
+        }
+    }
+
+    // Add click event listeners to the calculator buttons
+    const buttons = document.querySelectorAll(".button");
+    buttons.forEach((button) => {
+        button.addEventListener("click", function () {
+            const value = this.textContent;
+
+            if (value === "C") {
+                clearDisplay();
+            } else if (value === "=") {
+                calculateResult();
+            } else {
+                updateDisplay(value);
+            }
+        });
+    });
+</script>
+
+</html>
